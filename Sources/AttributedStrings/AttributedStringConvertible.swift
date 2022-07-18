@@ -69,8 +69,9 @@ extension NSMutableAttributedString {
 // MARK: - AttributedStringConvertible + Optional -
 
 extension Optional where Wrapped: AttributedStringConvertible {
-    public var orEmpty: AttributedStringConvertible {
-        self ?? Wrapped.empty
+    public var orEmpty: NSMutableAttributedString {
+        guard let self = self else { return Wrapped.empty }
+        return self.mutableAttributed
     }
 
     public var mutableAttributed: NSMutableAttributedString {
@@ -284,11 +285,24 @@ public extension AttributedStringConvertible {
 
 // MARK: - AttributedStringConvertible + Concatenation -
 
-public func + <T: AttributedStringConvertible>(lhs: T?, rhs: T?) -> NSMutableAttributedString? {
+public func + (lhs: String?, rhs: String?) -> String? {
     guard lhs != nil || rhs != nil else { return nil }
-    let string = lhs.mutableAttributed
-    string.append(rhs.mutableAttributed)
-    return string
+    return (lhs ?? "") + (rhs ?? "")
+}
+
+public func + (lhs: NSAttributedString?, rhs: String?) -> NSMutableAttributedString? {
+    guard lhs != nil || rhs != nil else { return nil }
+    return lhs.mutableAttributed + rhs.mutableAttributed
+}
+
+public func + (lhs: String?, rhs: NSAttributedString?) -> NSMutableAttributedString? {
+    guard lhs != nil || rhs != nil else { return nil }
+    return lhs.mutableAttributed + rhs.mutableAttributed
+}
+
+public func + (lhs: NSAttributedString?, rhs: NSAttributedString?) -> NSMutableAttributedString? {
+    guard lhs != nil || rhs != nil else { return nil }
+    return lhs.mutableAttributed + rhs.mutableAttributed
 }
 
 // MARK: - String + NSAttributedString + Concatenation -
@@ -298,7 +312,15 @@ public extension String {
         lhs.mutableAttributed + rhs.mutableAttributed
     }
 
+    static func + (lhs: String, rhs: NSAttributedString?) -> NSMutableAttributedString {
+        lhs.mutableAttributed + rhs.mutableAttributed
+    }
+
     static func + (lhs: NSAttributedString, rhs: String) -> NSMutableAttributedString {
+        lhs.mutableAttributed + rhs.mutableAttributed
+    }
+
+    static func + (lhs: NSAttributedString?, rhs: String) -> NSMutableAttributedString {
         lhs.mutableAttributed + rhs.mutableAttributed
     }
 }
