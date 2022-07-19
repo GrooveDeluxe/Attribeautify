@@ -89,7 +89,7 @@ extension Optional where Wrapped: AttributedStringConvertible {
 
 public extension AttributedStringConvertible {
     var fullRange: NSRange {
-        NSRange(0..<string.count)
+        .init(0..<string.count)
     }
 
     func apply(_ attributes: Attributes...,

@@ -25,9 +25,9 @@ class AttributedStringsViewController: UIViewController {
 
     // Data source
 
-    private let string: String = "Optional string"
-    private let attributedString: NSAttributedString = "Optional string".attributed
-    private let mutableAttributedString: NSMutableAttributedString = "Optional string".mutableAttributed
+    private let string: String = "Plain string"
+    private let attributedString: NSAttributedString = "Attributed string".attributed
+    private let mutableAttributedString: NSMutableAttributedString = "Mutable attributed string".mutableAttributed
 
     private lazy var testString1 = string + string
     private lazy var testString2 = string + attributedString
@@ -89,6 +89,14 @@ class AttributedStringsViewController: UIViewController {
             .mutateParagraphStyle(.lineHeight(40), .alignment(.center))
             .foregroundColor(.appRed, for: "title")
             .debug(),
+        "\n",
+        "Test ranges".title,
+        "🥰🥳🖖Some colorful attributed string"
+            .backgroundColor(.appGreen, for: "🥰🥳🖖")
+            .apply(.title, .foregroundColor(.appRed), .backgroundColor(.appBlue), in: .init(6..<10))
+            .foregroundColor(.appRed, for: "attributed")
+            .apply(.subtitle, .baselineOffset(4), .kern(-1), for: "string")
+        ,
         "\n",
         "Test strings".title,
         "\n",

@@ -10,6 +10,8 @@ extension UIColor {
     static var appForeground = color(light: .black, dark: .white)
     static var appDarkGray = color(light: .darkGray, dark: .lightGray)
     static var appRed = color(light: .red, dark: .orange)
+    static var appGreen = color(light: .green, dark: .green.withAlphaComponent(0.5))
+    static var appBlue = color(light: .blue, dark: .blue.withAlphaComponent(0.5))
 }
 
 // MARK: - Color utils -
