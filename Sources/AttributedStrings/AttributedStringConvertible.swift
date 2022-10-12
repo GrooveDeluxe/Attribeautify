@@ -44,8 +44,8 @@ extension NSAttributedString: AttributedStringConvertible {
     }
 }
 
-extension NSMutableAttributedString {
-    override public var mutableAttributed: NSMutableAttributedString {
+public extension NSMutableAttributedString {
+    override var mutableAttributed: NSMutableAttributedString {
         self
     }
 
@@ -56,8 +56,13 @@ extension NSMutableAttributedString {
             assertionFailure("Range and substring can't be used at the same time")
         }
         let resultingRange: NSRange = {
-            if let substring = substring, let substringRange = string.range(of: substring) {
-                return NSRange(substringRange, in: string)
+            if let substring = substring {
+                if let substringRange = string.range(of: substring) {
+                    return NSRange(substringRange, in: string)
+                } else {
+                    return NSRange()
+                }
+
             } else {
                 return range ?? fullRange
             }
@@ -68,13 +73,13 @@ extension NSMutableAttributedString {
 
 // MARK: - AttributedStringConvertible + Optional -
 
-extension Optional where Wrapped: AttributedStringConvertible {
-    public var orEmpty: NSMutableAttributedString {
+public extension Optional where Wrapped: AttributedStringConvertible {
+    var orEmpty: NSMutableAttributedString {
         guard let self = self else { return Wrapped.empty }
         return self.mutableAttributed
     }
 
-    public var mutableAttributed: NSMutableAttributedString {
+    var mutableAttributed: NSMutableAttributedString {
         orEmpty.mutableAttributed
     }
 
@@ -147,7 +152,9 @@ public extension AttributedStringConvertible {
         mutableAttributed.apply(.backgroundColor(color), in: range, for: substring)
     }
 
-    func ligature(_ ligature: Int, in range: NSRange? = nil, for substring: String? = nil) -> NSMutableAttributedString {
+    func ligature(_ ligature: Int,
+                  in range: NSRange? = nil,
+                  for substring: String? = nil) -> NSMutableAttributedString {
         mutableAttributed.apply(.ligature(ligature), in: range, for: substring)
     }
 
@@ -186,7 +193,9 @@ public extension AttributedStringConvertible {
         mutableAttributed.apply(.strokeWidth(strokeWidth), in: range, for: substring)
     }
 
-    func shadow(_ shadow: NSShadow, in range: NSRange? = nil, for substring: String? = nil) -> NSMutableAttributedString {
+    func shadow(_ shadow: NSShadow,
+                in range: NSRange? = nil,
+                for substring: String? = nil) -> NSMutableAttributedString {
         mutableAttributed.apply(.shadow(shadow), in: range, for: substring)
     }
 
