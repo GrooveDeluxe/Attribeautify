@@ -21,7 +21,7 @@
 		42BB3AE02884782E00140E9C /* Attributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attributes.swift; sourceTree = "<group>"; };
 		42BB3B1728849C9D00140E9C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		42BB3B1828849C9D00140E9C /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		42BB3B1928849C9D00140E9C /* Attribeautify.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = Attribeautify.podspec; sourceTree = "<group>"; };
+		42BB3B1928849C9D00140E9C /* Attribeautify.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; path = Attribeautify.podspec; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */

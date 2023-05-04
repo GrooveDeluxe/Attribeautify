@@ -127,7 +127,10 @@ public extension AttributedStringConvertible {
         if range != nil && substring != nil {
             assertionFailure("Range and substring can't be used at the same time")
         }
+        
         let attributedString = mutableAttributed
+        guard !attributedString.string.isEmpty else { return attributedString }
+
         let resultingRange: NSRange = {
             if let substring = substring, let substringRange = attributedString.string.range(of: substring) {
                 return NSRange(substringRange, in: attributedString.string)

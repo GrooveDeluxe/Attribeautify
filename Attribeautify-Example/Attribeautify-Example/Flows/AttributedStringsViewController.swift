@@ -78,6 +78,8 @@ class AttributedStringsViewController: UIViewController {
     private lazy var testOptMutAttrString9 = optMutAttrString1 + mutableAttributedString
     private lazy var testOptMutAttrString10 = mutableAttributedString + optMutAttrString2
 
+    private lazy var testMutateParagraphStyle = "".mutateParagraphStyle(.alignment(.center))
+
     private lazy var strings: [AttributedStringConvertible?] = [
         "Title".title,
         "Subtitle".subtitle,
@@ -149,6 +151,8 @@ class AttributedStringsViewController: UIViewController {
         testOptMutAttrString8,
         testOptMutAttrString9,
         testOptMutAttrString10,
+
+        testMutateParagraphStyle
     ]
 
     // View controller
