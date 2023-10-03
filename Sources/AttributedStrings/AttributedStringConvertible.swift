@@ -97,6 +97,9 @@ public extension AttributedStringConvertible {
         .init(0..<string.count)
     }
 
+    /// Mutates attributes for mutable attributed string as side effect and return it.
+    /// For others AttributedStringConvertible create mutable attributed string, apply attributes and return it.
+    @discardableResult
     func apply(_ attributes: Attributes...,
                in range: NSRange? = nil,
                for substring: String? = nil) -> NSMutableAttributedString {
@@ -138,9 +141,10 @@ public extension AttributedStringConvertible {
                 return range ?? attributedString.fullRange
             }
         }()
-        let attributes = attributedString.attributes(at: 0, longestEffectiveRange: nil, in: resultingRange)
-        let updatedAttributes = attributes.mutateParagraphStyle(paragraphStyleAttributes)
-        return attributedString.apply(updatedAttributes, in: resultingRange)
+        attributedString.enumerateAttributes(in: resultingRange) { attributes, range, _ in
+            attributedString.apply(attributes.mutateParagraphStyle(paragraphStyleAttributes), in: range)
+        }
+        return attributedString
     }
 
     func foregroundColor(_ color: UIColor,
@@ -276,6 +280,7 @@ public extension AttributedStringConvertible {
 // MARK: - AttributedStringConvertible + Debug -
 
 public extension AttributedStringConvertible {
+    @discardableResult
     func debug(_ prefix: String? = nil) -> NSMutableAttributedString {
         print((prefix ?? "Attribeautify: ") + mutableAttributed)
         return mutableAttributed

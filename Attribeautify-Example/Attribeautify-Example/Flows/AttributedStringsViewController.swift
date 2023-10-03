@@ -78,7 +78,22 @@ class AttributedStringsViewController: UIViewController {
     private lazy var testOptMutAttrString9 = optMutAttrString1 + mutableAttributedString
     private lazy var testOptMutAttrString10 = mutableAttributedString + optMutAttrString2
 
-    private lazy var testMutateParagraphStyle = "".mutateParagraphStyle(.alignment(.center))
+    private lazy var testMutateParagraphStyle1 = "".mutateParagraphStyle(.alignment(.center))
+
+    private lazy var testMutateParagraphStyle2 = (
+        "First part ".foregroundColor(.appRed) +
+        "Second part ".foregroundColor(.appGreen) +
+        "Third part".foregroundColor(.appBlue)
+    )
+        .mutateParagraphStyle(.lineHeight(30), .alignment(.center))
+        .debug("testMutateParagraphStyle2")
+
+    private lazy var testMutateParagraphStyle3 = ("First part " + "Second part " + "Third part")
+        .mutateParagraphStyle(.lineHeight(30), .alignment(.center))
+        .apply(.foregroundColor(.appRed), for: "First part ")
+        .apply(.foregroundColor(.appGreen), for: "Second part ")
+        .apply(.foregroundColor(.appBlue), for: "Third part")
+        .debug("testMutateParagraphStyle3")
 
     private lazy var strings: [AttributedStringConvertible?] = [
         "Title".title,
@@ -152,7 +167,9 @@ class AttributedStringsViewController: UIViewController {
         testOptMutAttrString9,
         testOptMutAttrString10,
 
-        testMutateParagraphStyle
+        testMutateParagraphStyle1,
+        testMutateParagraphStyle2,
+        testMutateParagraphStyle3
     ]
 
     // View controller
