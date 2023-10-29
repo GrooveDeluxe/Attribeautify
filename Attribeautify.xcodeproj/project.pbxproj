@@ -14,6 +14,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		428502A02AEEDE0F00D1466F /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		42BB3AD32884768C00140E9C /* Attribeautify.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Attribeautify.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		42BB3AD62884768C00140E9C /* Attribeautify.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Attribeautify.h; sourceTree = "<group>"; };
 		42BB3ADE2884782D00140E9C /* ParagraphStyleConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParagraphStyleConvertible.swift; sourceTree = "<group>"; };
@@ -74,6 +75,7 @@
 		42BB3B1628849C8000140E9C /* Metadata */ = {
 			isa = PBXGroup;
 			children = (
+				428502A02AEEDE0F00D1466F /* Package.swift */,
 				42BB3B1928849C9D00140E9C /* Attribeautify.podspec */,
 				42BB3B1828849C9D00140E9C /* LICENSE */,
 				42BB3B1728849C9D00140E9C /* README.md */,
